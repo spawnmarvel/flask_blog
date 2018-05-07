@@ -31,7 +31,7 @@ def __init__(self, title, slug, content, pub_time):
 @app.route("/")
 def show_all():
    tmp = Entry.query.all()
-   return render_template("show_all.html", entry = Entry.query.all(), entr=tmp )
+   return render_template("show_all.html", entry = Entry.query.all(), entr=tmp, ti=datetime.datetime.now() )
 
 @app.route("/new", methods = ["GET", "POST"])
 def new():

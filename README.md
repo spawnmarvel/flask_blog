@@ -25,7 +25,11 @@ TBD
 
 ## ToDo:
 add entry = ok
+<br>
 delete entry = ok
+<br>
+[![Build Status]
+<br>
 follow tutorial blog in less then ann hour
 well, that was not true...FTS4 issue!
 Had to change peeww to alchemy

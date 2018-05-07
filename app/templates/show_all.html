@@ -7,11 +7,13 @@
       
       <br>
       <form action = "{{ request.path }}" method = "post">
+            <div class="form-group">
             <label for = "del">Delete id</label><br>
             <input class="form-control" id="inputdefault" type="text" name="del" />
             <br>
             <input type = "submit" value = "Submit" class="btn btn-primary" />
-         </form>
+            </div>
+        </form>
       <br>
       {%- for message in get_flashed_messages() %}
          {{ message }}
@@ -31,7 +33,6 @@
          </thead>
          
          <tbody>
-            <p> {{ entr }}</p>
             {% for ent in entry %}
                <tr>
                   <td>{{ ent.id }}</td>
@@ -43,5 +44,8 @@
             {% endfor %}
          </tbody>
       </table>
+      <br>
+      <p>Log: {{ ti }}</p>
+      <p> {{ entr }}</p>
     </div>  
 {% endblock %}
