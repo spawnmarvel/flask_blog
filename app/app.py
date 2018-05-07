@@ -12,7 +12,7 @@ from sqlalchemy import Column # pure sqlalchemy
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite3"
 app.config["SECRET_KEY"] = "random string"
-admin_pass = "testing"
+admin_pass = "testing" #just for test
 db = SQLAlchemy(app)
 
 class Entry(db.Model):
