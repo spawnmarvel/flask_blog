@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+*.conf
+*.json
+*.db
+*.logs
+*.log
+logs
+*.service
+*sql
