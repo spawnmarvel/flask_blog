@@ -4,8 +4,7 @@ from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.extra import ExtraExtension
 from micawber import bootstrap_basic, parse_html
 from micawber.cache import Cache as OEmbedCache
-#changed
-
+#added
 from flask_sqlalchemy import SQLAlchemy # extension for sqlalchemy
 import datetime
 from sqlalchemy import Column # pure sqlalchemy
