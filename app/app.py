@@ -1,3 +1,8 @@
+import datetime
+import functools
+import os
+import re
+import urllib
 from flask import (Flask, abort, request, flash, url_for, redirect, render_template, Markup, Response, session)
 from markdown import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
@@ -12,7 +17,7 @@ from sqlalchemy import Column # pure sqlalchemy
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite3"
 app.config["SECRET_KEY"] = "random string"
-admin_pass = "testing" #just for test
+app.config["ADMIN_PASSWORD"] = "justForTest"
 db = SQLAlchemy(app)
 
 class Entry(db.Model):
@@ -20,13 +25,43 @@ class Entry(db.Model):
    title = db.Column("entry_title", db.String(100))
    slug = db.Column("entry_slug", db.String(50))
    content = db.Column("entry_content", db.String(200)) 
-   pub_time = db.Column("entry_time", db.DateTime, default=datetime.datetime.now())
+   pub_time = db.Column("entry_time", db.DateTime)
 
-def __init__(self, title, slug, content, pub_time):
-   self.title = title
-   self.slug = slug
-   self.content = content
-   self.pub_time = pub_time
+   def __init__(self, title, slug, content, pub_time):
+         self.title = title
+         self.slug = slug
+         self.content = content
+         self.pub_time = pub_time
+
+
+def login_required(fn):
+      @functools.wraps(fn)
+      def inner(*args, **kwargs):
+            if session.get("logged_in"):
+                  return fn(*args, **kwargs)
+            return redirect(url_for("login", next=request.path))
+      return inner
+
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    next_url = request.args.get('next') or request.form.get('next')
+    if request.method == 'POST' and request.form.get('password'):
+        password = request.form.get('password')
+        if password == app.config['ADMIN_PASSWORD']:
+            session['logged_in'] = True
+            session.permanent = True  # Use cookie to store session.
+            flash('You are now logged in.', 'success')
+            return redirect(next_url or url_for('index'))
+        else:
+            flash('Incorrect password.', 'danger')
+    return render_template('login.html', next_url=next_url)
+
+@app.route('/logout/', methods=['GET', 'POST'])
+def logout():
+    if request.method == 'POST':
+        session.clear()
+        return redirect(url_for('login'))
+    return render_template('logout.html')
 
 @app.route("/")
 def show_all():
@@ -40,7 +75,7 @@ def new():
          flash("Please enter all the fields", "error")
       else:
          entry = Entry(title=request.form["title"], slug=request.form["slug"],
-            content=request.form["cont"])
+            content=request.form["cont"], pub_time=datetime.datetime.now())
          
          db.session.add(entry)
          db.session.commit()
