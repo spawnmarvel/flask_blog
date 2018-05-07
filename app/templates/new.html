@@ -1,25 +1,32 @@
 {% extends "base.html" %} {% block title %}Blog{% endblock %} {% block body %}
-<div class="jumbotron"> 
-   
-      <h3>Students - Flask SQLAlchemy example</h3>
-      <hr/>
-      
-      {%- for category, message in get_flashed_messages(with_categories = true) %}
-         <div class = "alert alert-danger">
-            {{ message }}
-         </div>
-      {%- endfor %}
-      
-      <form action = "{{ request.path }}" method = "post">
-         <label for = "title">Title</label><br>
-         <input class="form-control" input type = "text" name = "title" placeholder = "Title" /><br>
-         <label for = "email">Slug</label><br>
-         <input class="form-control" input type = "text" name = "slug" placeholder = "slug" /><br>
-         <label for = "cont">Content</label><br>
-         <textarea class="form-control" name = "cont" placeholder = "cont"></textarea><br>
-         <label for = "pub">Publication date default to submit</label><br>
-         <input type = "submit" value = "Submit" class="btn btn-primary" />
-      </form>
-      
-    </div>  
-    {% endblock %}
+<div class="jumbotron">
+
+    <h3>Students - Flask SQLAlchemy example</h3>
+    <hr/> {%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {%- endfor %}
+
+    <form action="{{ request.path }}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <br>
+            <input class="form-control" input type="text" name="title" placeholder="Title" />
+            <br>
+            <label for="email">Slug</label>
+            <br>
+            <input class="form-control" input type="text" name="slug" placeholder="slug" />
+            <br>
+            <label for="cont">Content</label>
+            <br>
+            <textarea class="form-control" name="cont" placeholder="cont"></textarea>
+            <br>
+            <label for="pub">Publication date default to submit</label>
+            <br>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+{% endblock %}
