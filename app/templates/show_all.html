@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang = "en">
-   <head></head>
-   <body>
-      
+{% extends "base.html" %} {% block title %}Blog{% endblock %} {% block body %}
+<div class="jumbotron"> 
       <h3>
          <a href = "{{ url_for('show_all') }}">Blog - Flask 
             SQLAlchemy example, use same booststrap as in testit.tech</a>
@@ -11,8 +8,9 @@
       <br>
       <form action = "{{ request.path }}" method = "post">
             <label for = "del">Delete id</label><br>
-            <input type = "text" name = "del" placeholder = "Delete" /><br>
-            <input type = "submit" value = "Submit" />
+            <input class="form-control" id="inputdefault" type="text" name="del" />
+            <br>
+            <input type = "submit" value = "Submit" class="btn btn-primary" />
          </form>
       <br>
       {%- for message in get_flashed_messages() %}
@@ -45,6 +43,5 @@
             {% endfor %}
          </tbody>
       </table>
-    
-   </body>
-</html>
+    </div>  
+{% endblock %}

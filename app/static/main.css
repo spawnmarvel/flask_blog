@@ -1,0 +1,76 @@
+body {
+    background-color:rgb(12, 12, 1)
+}
+
+
+.jumbotron {
+    background-color:rgb(201, 211, 150)
+}
+
+.break_them {
+    word-break: break-all
+}
+.style_separator {
+    background-color: rgb(235, 229, 229);
+    padding: 5px;
+    border-radius: 10px;
+
+}
+.make_small {
+    font-size: 50%
+}
+
+/* Chat containers */
+.container_user {
+    border: 2px solid #dedede; 
+    background-color: #f1f1f1; 
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+/* Darker chat container */
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+
+/* Clear floats */
+.container_user::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container_user img {
+    float: left;
+    max-width: 80px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container_user img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+
+
+
+
