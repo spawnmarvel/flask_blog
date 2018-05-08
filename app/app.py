@@ -30,11 +30,7 @@ class Entry(db.Model):
    content = db.Column("entry_content", db.String(200)) 
    pub_time = db.Column("entry_time", db.DateTime)
 
-   def __init__(self, title, slug, content, pub_time):
-         self.title = title
-         self.slug = slug
-         self.content = content
-         self.pub_time = pub_time
+   
 
 def login_required(fn):
       @functools.wraps(fn)
