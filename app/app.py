@@ -64,6 +64,7 @@ def logout():
 
 @app.route("/")
 def show_all():
+      # pagination
    tmp = Entry.query.all()
    return render_template("show_all.html", entry = Entry.query.all(), entr=tmp, ti=datetime.datetime.now() )
 
