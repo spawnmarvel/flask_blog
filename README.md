@@ -12,6 +12,11 @@ http://flask-sqlalchemy.pocoo.org/2.3/queries/
 https://www.tutorialspoint.com/flask/index.htm
 <br>
 https://www.tutorialspoint.com/flask/flask_sqlalchemy.htm
+<br>
+https://www.codementor.io/garethdwyer/building-a-crud-application-with-flask-and-sqlalchemy-dm3wv7yu2
+<br>
+Pagination in Flask-SQLAlchemy, 
+https://www.youtube.com/watch?v=hkL9pgCJPNk
 
 ## Installing
 
@@ -19,7 +24,6 @@ Create a virtual env and install all the packets from requirements.txt
 
 ##  Running code
 peewee is replace by flask-sqlalchemy
-TBD
 
 ## Running the tests
 
@@ -30,8 +34,9 @@ delete entry = ok
 <br>
 [![Build Status]
 <br>
-follow tutorial blog in less then ann hour
-well, that was not true...FTS4 issue!
+follow tutorial blog in less then an hour.
+<br>
+Well, that was not true...FTS4 issue!
 Had to change peeww to alchemy
 ## Versioning
 Branch: master and test.
