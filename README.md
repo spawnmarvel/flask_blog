@@ -35,9 +35,17 @@ add entry = ok
 <br>
 delete entry = ok
 <br>
-[![Build Status]
+pagination = ok
 <br>
+Save image to form and db
+<br>
+splitt content from db to list and create br tags on each .
 follow tutorial blog in less then an hour.
+<br>
+edit, delete must be moved to item, like last time
+login for that
+<br>
+Work on layout
 <br>
 Well, that was not true...FTS4 issue!
 Had to change peeww to alchemy
