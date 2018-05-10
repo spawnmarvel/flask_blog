@@ -15,10 +15,12 @@ https://www.tutorialspoint.com/flask/flask_sqlalchemy.htm
 <br>
 https://www.codementor.io/garethdwyer/building-a-crud-application-with-flask-and-sqlalchemy-dm3wv7yu2
 <br>
-Pagination in Flask-SQLAlchemy, 
+Pagination in Flask-SQLAlchemy
+<br>
 https://www.youtube.com/watch?v=hkL9pgCJPNk
 <br>
 Pagination
+<br>
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ix-pagination
 
 ## Installing
@@ -63,7 +65,7 @@ For the versions available, see the [tags on this repository]
 
 ## Comment
 Follow tutorial "blog in less then an hour".
-Well, that was not true...FTS4 issue!
+Well, that was not true...FTS4 issue, was just one issue. 
 Had to change peewee to alchemy
 
 
