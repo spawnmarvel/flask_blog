@@ -1,5 +1,5 @@
 import os
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = './static/img/uploads'
 
 def check_file(fil):
     file_format = fil.filename
@@ -9,7 +9,10 @@ def check_file(fil):
     return valid
 
 def list_images():
+    li = []
     for fi in os.listdir(UPLOAD_FOLDER):
-        print(format(fi))
+        #print(format(fi))
+        li.append(fi)
+    return li
 
 

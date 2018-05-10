@@ -21,6 +21,7 @@
                 <td>{{ ent.slug }}</td>
                 <td>{{ ent.content }}</td>
                 <td>{{ ent.pub_time }}</td>
+                <td>{{ ent.img }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -36,10 +37,14 @@
            Published: {{ ent.pub_time }}
            <br>
            {{ ent.content }}
+           <br>
+           {{ ent.img }}
     </p>
+    <img src="/static/img/uploads/{{ li }}.jpg" class="img-responsive" width="300" height="236">
     </div>
     {% endfor %}
 
+    
 
   <p>pages</p>
   {% if prev_url %}

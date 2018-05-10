@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite3"
 app.config["SECRET_KEY"] = "random string"
 app.config["ADMIN_PASSWORD"] = "justForTest"
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = './static/img/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 db = SQLAlchemy(app)
 
@@ -33,17 +33,18 @@ class Entry(db.Model):
    slug = db.Column("entry_slug", db.String(50))
    content = db.Column("entry_content", db.String(200)) 
    pub_time = db.Column("entry_time", db.DateTime)
+   img = db.Column("entry_img", db.String(200)) 
 
 @app.route("/entry")
 def entry():
-      uHelper.list_images()
+      li = "test" # uHelper.list_images()
       page = request.args.get("page", 1, type=int)
       entry = Entry.query.paginate(per_page=2, page=page, error_out=True)
       next_url = url_for("entry", page=entry.next_num)
       
       prev_url = url_for("entry", page=entry.prev_num)
       
-      return render_template("page.html", entry=entry, next_url=next_url, prev_url=prev_url)
+      return render_template("page.html", entry=entry, next_url=next_url, prev_url=prev_url, li=li)
 
 
 
@@ -59,14 +60,19 @@ def new():
       if not request.form["title"] or not request.form["slug"] or not request.form["cont"]: #or not uHelper.check_file(request.files["file"] == True):
          flash("Please enter all the fields", "error")
       else:
+         try:
+               fil = request.files["file"]
+               filename = secure_filename(fil.filename)
+               fil.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+         except Exception:
+               # there was no image uploaded
+               fil = "NoImage" + format(datetime.datetime.now())
+
          entry = Entry(title=request.form["title"], slug=request.form["slug"],
-            content=request.form["cont"], pub_time=datetime.datetime.now())
+            content=request.form["cont"], pub_time=datetime.datetime.now(), img=str(fil))
          db.session.add(entry)
          db.session.commit()
-         fil = request.files["file"]
-         filename = secure_filename(fil.filename)
-         filename = format(entry.id) + ".jpg"
-         fil.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+         
          flash("Record was successfully added")
          return redirect(url_for("show_all"))
    return render_template("new.html")
