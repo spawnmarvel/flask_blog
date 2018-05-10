@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %}Blog{% endblock %} {% block body %}
+<div class="jumbotron">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Content</th>
+                <th>Publication</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for ent in entry.items %}
+           
+            <tr>
+                <td>{{ ent.id }}</td>
+                <td>{{ ent.title }}</td>
+                <td>{{ ent.slug }}</td>
+                <td>{{ ent.content }}</td>
+                <td>{{ ent.pub_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>new slide</p>
+
+    {% for ent in entry.items %}
+    <div class="jumbotron" style="background-color: rgb(235, 229, 229)">
+    <p class="break_them">
+           ID: {{ ent.id }} Title: {{ ent.title }} 
+           <br>
+           <br>
+           Published: {{ ent.pub_time }}
+           <br>
+           {{ ent.content }}
+    </p>
+    </div>
+    {% endfor %}
+
+
+  <p>pages</p>
+  {% if prev_url %}
+  <a href="{{ prev_url }}">Newer posts</a>
+  {% endif %}
+  {% if next_url %}
+  <a href="{{ next_url }}">Older posts</a>
+  {% endif %}
+</div>
+{% endblock %}

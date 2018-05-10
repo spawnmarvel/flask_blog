@@ -30,36 +30,16 @@ class Entry(db.Model):
    content = db.Column("entry_content", db.String(200)) 
    pub_time = db.Column("entry_time", db.DateTime)
 
-   
+@app.route("/entry")
+def entry():
+      page = request.args.get("page", 1, type=int)
+      entry = Entry.query.paginate(per_page=2, page=page, error_out=True)
+      next_url = url_for("entry", page=entry.next_num)
+      
+      prev_url = url_for("entry", page=entry.prev_num)
+      
+      return render_template("page.html", entry=entry, next_url=next_url, prev_url=prev_url)
 
-def login_required(fn):
-      @functools.wraps(fn)
-      def inner(*args, **kwargs):
-            if session.get("logged_in"):
-                  return fn(*args, **kwargs)
-            return redirect(url_for("login", next=request.path))
-      return inner
-
-@app.route('/login/', methods=['GET', 'POST'])
-def login():
-    next_url = request.args.get('next') or request.form.get('next')
-    if request.method == 'POST' and request.form.get('password'):
-        password = request.form.get('password')
-        if password == app.config['ADMIN_PASSWORD']:
-            session['logged_in'] = True
-            session.permanent = True  # Use cookie to store session.
-            flash('You are now logged in.', 'success')
-            return redirect(next_url or url_for('index'))
-        else:
-            flash('Incorrect password.', 'danger')
-    return render_template('login.html', next_url=next_url)
-
-@app.route('/logout/', methods=['GET', 'POST'])
-def logout():
-    if request.method == 'POST':
-        session.clear()
-        return redirect(url_for('login'))
-    return render_template('logout.html')
 
 
 @app.route("/")

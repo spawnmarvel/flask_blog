@@ -17,6 +17,9 @@ https://www.codementor.io/garethdwyer/building-a-crud-application-with-flask-and
 <br>
 Pagination in Flask-SQLAlchemy, 
 https://www.youtube.com/watch?v=hkL9pgCJPNk
+<br>
+Pagination
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ix-pagination
 
 ## Installing
 
