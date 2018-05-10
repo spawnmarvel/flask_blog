@@ -39,7 +39,9 @@ delete entry = ok
 <br>
 pagination = ok
 <br>
-Save image to form and db
+Save image in form and save the name to db, img is saved to file = ok
+<br>
+Compare filename and db img = db.Column("entry_img", db.String(200)), present it in blog object
 <br>
 splitt content from db to list and create br tags on each .
 <br>

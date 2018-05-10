@@ -43,7 +43,7 @@ def entry():
       next_url = url_for("entry", page=entry.next_num)
       
       prev_url = url_for("entry", page=entry.prev_num)
-      
+      # utiliy helper check with images from db and load correct
       return render_template("page.html", entry=entry, next_url=next_url, prev_url=prev_url, li=li)
 
 
