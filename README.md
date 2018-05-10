@@ -40,15 +40,13 @@ pagination = ok
 Save image to form and db
 <br>
 splitt content from db to list and create br tags on each .
-follow tutorial blog in less then an hour.
 <br>
 edit, delete must be moved to item, like last time
 login for that
 <br>
 Work on layout
 <br>
-Well, that was not true...FTS4 issue!
-Had to change peeww to alchemy
+
 ## Versioning
 Branch: master and test.
 For the versions available, see the [tags on this repository]
@@ -62,6 +60,11 @@ For the versions available, see the [tags on this repository]
 ## Acknowledgments
 
 * http://charlesleifer.com/blog/how-to-make-a-flask-blog-in-one-hour-or-less/
+
+## Comment
+Follow tutorial "blog in less then an hour".
+Well, that was not true...FTS4 issue!
+Had to change peewee to alchemy
 
 
 
