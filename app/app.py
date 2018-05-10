@@ -16,11 +16,15 @@ from playhouse.sqlite_ext import *
 from flask_sqlalchemy import SQLAlchemy # extension for sqlalchemy
 import datetime
 from sqlalchemy import Column # pure sqlalchemy
+from werkzeug import secure_filename
+import utility.utility_helper as uHelper
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite3"
 app.config["SECRET_KEY"] = "random string"
 app.config["ADMIN_PASSWORD"] = "justForTest"
+UPLOAD_FOLDER = './uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 db = SQLAlchemy(app)
 
 class Entry(db.Model):
@@ -32,6 +36,7 @@ class Entry(db.Model):
 
 @app.route("/entry")
 def entry():
+      uHelper.list_images()
       page = request.args.get("page", 1, type=int)
       entry = Entry.query.paginate(per_page=2, page=page, error_out=True)
       next_url = url_for("entry", page=entry.next_num)
@@ -51,14 +56,17 @@ def show_all():
 @app.route("/new", methods = ["GET", "POST"])
 def new():
    if request.method == "POST":
-      if not request.form["title"] or not request.form["slug"] or not request.form["cont"]:
+      if not request.form["title"] or not request.form["slug"] or not request.form["cont"]: #or not uHelper.check_file(request.files["file"] == True):
          flash("Please enter all the fields", "error")
       else:
          entry = Entry(title=request.form["title"], slug=request.form["slug"],
             content=request.form["cont"], pub_time=datetime.datetime.now())
-         
          db.session.add(entry)
          db.session.commit()
+         fil = request.files["file"]
+         filename = secure_filename(fil.filename)
+         filename = format(entry.id) + ".jpg"
+         fil.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
          flash("Record was successfully added")
          return redirect(url_for("show_all"))
    return render_template("new.html")
@@ -78,9 +86,6 @@ def delete():
                flash("Record was successfully deleted: " + format(entry), "succsess")
          except Exception:
                flash("Record does not exist: " + format(del_id) + " " + format(entry))
-                
-
-
       return redirect(url_for("show_all"))
 
 @app.errorhandler(404)

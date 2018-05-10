@@ -8,7 +8,7 @@
     </div>
     {%- endfor %}
 
-    <form action="{{ request.path }}" method="post">
+    <form action="{{ request.path }}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title</label>
             <br>
@@ -23,6 +23,12 @@
             <textarea class="form-control" name="cont" placeholder="cont"></textarea>
             <br>
             <label for="pub">Publication date default to submit</label>
+            <br>
+            <label for="image">Image: jpg, png</label>
+            <label class="btn btn-default btn-file">
+                Browse
+                <input type="file" name="file" style="display: none;">
+            </label>
             <br>
             <input type="submit" value="Submit" class="btn btn-primary" />
         </div>
