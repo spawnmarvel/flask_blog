@@ -1,5 +1,13 @@
 {% extends "base.html" %} {% block title %}Blog{% endblock %} {% block body %}
 <div class="jumbotron">
+    <div class="form-group">
+        <p>Toggle post</p>
+        {% if prev_url %}
+        <a href="{{ prev_url }}">Newer posts</a>
+        {% endif %} {% if next_url %}
+        <a href="{{ next_url }}">Older posts</a>
+        {% endif %}
+    </div>
 
     <table>
         <thead>
@@ -14,7 +22,7 @@
 
         <tbody>
             {% for ent in entry.items %}
-           
+
             <tr>
                 <td>{{ ent.id }}</td>
                 <td>{{ ent.title }}</td>
@@ -30,28 +38,25 @@
 
     {% for ent in entry.items %}
     <div class="jumbotron" style="background-color: rgb(235, 229, 229)">
-    <p class="break_them">
-           ID: {{ ent.id }} Title: {{ ent.title }} 
-           <br>
-           <br>
-           Published: {{ ent.pub_time }}
-           <br>
-           {{ ent.content }}
-           <br>
-           {{ ent.img }}
-    </p>
-    <img src="/static/img/uploads/{{ li }}.jpg" class="img-responsive" width="300" height="236">
+        <p class="break_them">
+            ID: {{ ent.id }} Title: {{ ent.title }}
+            <br>
+            <br> Published: {{ ent.pub_time }}
+            <br> {{ ent.content }}
+            <br> {{ ent.img }}
+        </p>
+        <img src="/static/img/uploads/{{ li }}.jpg" class="img-responsive" width="300" height="236">
     </div>
     {% endfor %}
 
-    
 
-  <p>pages</p>
-  {% if prev_url %}
-  <a href="{{ prev_url }}">Newer posts</a>
-  {% endif %}
-  {% if next_url %}
-  <a href="{{ next_url }}">Older posts</a>
-  {% endif %}
+    <div class="form-group">
+        <p>Toggle post</p>
+        {% if prev_url %}
+        <a href="{{ prev_url }}">Newer posts</a>
+        {% endif %} {% if next_url %}
+        <a href="{{ next_url }}">Older posts</a>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

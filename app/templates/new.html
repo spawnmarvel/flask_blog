@@ -1,38 +1,55 @@
 {% extends "base.html" %} {% block title %}Blog{% endblock %} {% block body %}
+<!-- <div class="jumbotron"> -->
 <div class="jumbotron">
-
-    <h3>Students - Flask SQLAlchemy example</h3>
-    <hr/> {%- for category, message in get_flashed_messages(with_categories = true) %}
-    <div class="alert alert-danger">
-        {{ message }}
-    </div>
-    {%- endfor %}
-
-    <form action="{{ request.path }}" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ request.path }}" method="post" enctype="multipart/form-data">
+        <!-- title -->
         <div class="form-group">
-            <label for="title">Title</label>
-            <br>
-            <input class="form-control" input type="text" name="title" placeholder="Title" />
-            <br>
-            <label for="email">Slug</label>
-            <br>
-            <input class="form-control" input type="text" name="slug" placeholder="slug" />
-            <br>
-            <label for="cont">Content</label>
-            <br>
-            <textarea class="form-control" name="cont" placeholder="cont"></textarea>
-            <br>
-            <label for="pub">Publication date default to submit</label>
-            <br>
-            <label for="image">Image: jpg, png</label>
-            <label class="btn btn-default btn-file">
-                Browse
-                <input type="file" name="file" style="display: none;">
-            </label>
-            <br>
-            <input type="submit" value="Submit" class="btn btn-primary" />
+            <label for="title" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+                <input class="form-control" input type="text" id="title" name="title" placeholder="Title" />
+            </div>
+        </div>
+        <!-- slug-->
+        <div class="form-group">
+            <label for="slug" class="col-sm-2 control-label">Slug key</label>
+            <div class="col-sm-10">
+                <input class="form-control" input type="text" name="slug" placeholder="Slug the key for search" />
+            </div>
+        </div>
+        <!-- content -->
+        <div class="form-group">
+            <label for="Content" class="col-sm-2 control-label">Content</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="content" name="cont" placeholder="Content" style="height: 300px;"></textarea>
+            </div>
+        </div>
+        <!-- publish -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input name="published" type="checkbox" value="y" checked="checked">Publish
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- image -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <label class="btn btn-default btn-file">Add image
+                    <input type="file" name="file" style="display: none;">
+                </label>
+                <p>Format:png / jpg</p>
+            </div>
+        </div>
+        <!-- submit -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+                <a class="btn btn-default" href="{{ url_for('show_all') }}">Cancel</a>
+            </div>
         </div>
     </form>
-
 </div>
+<!--</div> -->
 {% endblock %}

@@ -1,10 +1,6 @@
 {% extends "base.html" %} {% block title %}Blog{% endblock %} {% block body %}
 <div class="jumbotron">
-    <h3>
-        <a href="{{ url_for('show_all') }}">Blog - Flask SQLAlchemy example, use same booststrap as in testit.tech</a>
-    </h3>
-
-    <br>
+    
     <form action="{{ request.path }}" method="post">
         <div class="form-group">
             <label for="del">Delete id</label>

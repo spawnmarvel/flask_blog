@@ -46,7 +46,10 @@ def entry():
       # utiliy helper check with images from db and load correct
       return render_template("page.html", entry=entry, next_url=next_url, prev_url=prev_url, li=li)
 
-
+@app.route("/create")
+def create():
+      # return "create"
+      return render_template("create.html")
 
 @app.route("/")
 def show_all():

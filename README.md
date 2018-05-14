@@ -67,7 +67,7 @@ For the versions available, see the [tags on this repository]
 
 ## Comment
 Follow tutorial "blog in less then an hour".
-Well, that was not true...FTS4 issue, was just one issue. 
+Well, that was not true...FTS4 problem sqlite, was just one issue. 
 Had to change peewee to alchemy
 
 
