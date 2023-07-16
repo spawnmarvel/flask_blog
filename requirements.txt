@@ -9,6 +9,6 @@ Markdown==2.6.11
 MarkupSafe==1.0
 micawber==0.3.5
 peewee==3.3.4
-Pygments==2.2.0
+Pygments==2.7.4
 SQLAlchemy==1.2.7
 Werkzeug==0.14.1
